@@ -24,12 +24,12 @@ export const useCart = create<CartState>()(
         set((state) => {
           return { items: [...state.items, { product }] }
         }),
-      removeItem: (id) =>
-        set((state) => ({
-          items: state.items.filter(
-            (item) => item.product.id !== id
-          ),
-        })),
+        removeItem: (id) =>
+          set((state) => ({
+            items: state.items.filter(
+              (item) => item.product && item.product.id !== id
+            ),
+          })),
       clearCart: () => set({ items: [] }),
     }),
     {
