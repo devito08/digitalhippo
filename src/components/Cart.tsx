@@ -34,6 +34,16 @@ const Cart = () => {
   //   0
   // )
 
+  const cartTotal = items.reduce(
+    (total, { product }) => (product ? total + product.price : total),
+    0
+  )
+  
+
+  
+
+
+
   const fee = 1
 
   return (
@@ -55,12 +65,15 @@ const Cart = () => {
           <>
             <div className='flex w-full flex-col pr-6'>
               <ScrollArea>
-                {/* {items.map(({ product }) => (
+              {items.map(({ product }) => (
+                product ? (
                   <CartItem
                     product={product}
                     key={product.id}
                   />
-                ))} */}
+                ) : null
+              ))}
+
               </ScrollArea>
             </div>
             <div className='space-y-4 pr-6'>
@@ -79,7 +92,7 @@ const Cart = () => {
                 <div className='flex'>
                   <span className='flex-1'>Total</span>
                   <span>
-                    {/* {formatPrice(cartTotal + fee)} */}
+                    {formatPrice(cartTotal + fee)}
                   </span>
                 </div>
               </div>
